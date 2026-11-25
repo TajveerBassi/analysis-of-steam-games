@@ -29,6 +29,13 @@ gamesClean <- games |>
   filter(totalReviews >= 50)
 
 nrow(gamesClean)
-sum(is.na(gamesClean$release_date))
+sum(is.na(gamesClean$releaseDate))
 glimpse(gamesClean)
 
+# Checking for how many missing or empty values. 
+gamesClean |>
+  summarise(
+    noDate     = sum(is.na(releaseDate)),
+    noPlaytime = sum(playtimeHours == 0),
+    noGenre    = sum(is.na(genres))
+  )
